@@ -1,6 +1,5 @@
 .circle-years-wrapper {
     .years-container {
-        height: 300px;
         display: flex;
         position: absolute;
         left: 50%;
@@ -8,7 +7,7 @@
         transform: translate(-50%, -50%);
 
         h2 {
-            font-size: 200px;
+            font-size: 10vw;
             color: #5d5fef;
             margin: 0;
 
@@ -25,15 +24,15 @@
         top: 50%;
         transform: translate(-50%, -50%);
         transition: transform 0.5s ease;
-        width: 500px;
-        height: 500px;
+        width: 25vw;
+        height: 25vw;
         border-radius: 50%;
         border: 1px solid #42567a50;
 
         .circle-item {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 3.5vw;
+            height: 3.5vw;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -48,13 +47,13 @@
 
             &.closed {
                 color: transparent;
-                width: 6px;
-                height: 6px;
+                width: 0.5vw;
+                height: 0.5vw;
                 background-color: black;
 
                 &:hover {
-                    width: 50px;
-                    height: 50px;
+                    width: 3.5vw;
+                    height: 3.5vw;
                     background-color: white;
                     color: initial;
                 }
@@ -62,10 +61,10 @@
 
             .circle-name {
                 position: absolute;
-                left: 150%;
+                left: 140%;
                 top: 50%;
                 transform: translateY(-50%);
-                font-size: 20px;
+                font-size: 1.2vw;
                 font-weight: bold;
                 line-height: 30px;
                 color: #42567a;

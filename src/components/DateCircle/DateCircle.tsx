@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./DateCircle.scss";
 import Circle from "./Circle";
 import { DataItem } from "../../utils/data";
@@ -8,23 +8,29 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
     const data = dates?.[activeSectionIndex];
     const startYear = data?.events?.[0]?.year;
     const endYear = data?.events?.[data?.events?.length - 1]?.year;
-    const radius = 250;
+    const circleRef = useRef<HTMLDivElement | null>(null);
+    const [update, setUpdate] = useState(false);
 
     const [currentYears, setCurrentYears] = useState<{ start: number; end: number }>({
         start: startYear,
         end: endYear,
     });
 
-    const getCirclePosition = (index: number, total: number) => {
-        const angle = (2 * Math.PI * index) / total;
-        const x = radius + radius * Math.cos(angle);
-        const y = radius + radius * Math.sin(angle);
-        return { left: `${x}px`, top: `${y}px` };
-    };
+    useEffect(() => {
+        const updateSize = () => {
+            setUpdate((prev) => !prev);
+            console.log(update);
+        };
 
-    const handleClick = (ind: number) => {
-        setActiveSectionIndex(ind);
-    };
+        updateSize();
+
+        window.addEventListener("resize", updateSize);
+
+        return () => {
+            window.removeEventListener("resize", updateSize);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         const duration = 0.5;
@@ -61,6 +67,17 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeSectionIndex, startYear, endYear]);
 
+    const getCirclePosition = (index: number, total: number, radius: number) => {
+        const angle = (2 * Math.PI * index) / total;
+        const x = radius + radius * Math.cos(angle);
+        const y = radius + radius * Math.sin(angle);
+        return { left: `${x}px`, top: `${y}px` };
+    };
+
+    const handleClick = (ind: number) => {
+        setActiveSectionIndex(ind);
+    };
+
     return (
         <div className="circle-years-wrapper">
             <div className="years-container">
@@ -68,10 +85,14 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
                 <h2>{currentYears.end}</h2>
             </div>
 
-            <div className="circle-container">
+            <div
+                className="circle-container"
+                ref={circleRef}
+            >
                 {dates && dates.length
                     ? dates.map((data: DataItem, index: number) => {
-                          const position = getCirclePosition(index, dates.length);
+                          const radius = circleRef.current ? circleRef.current.clientWidth / 2 : 0;
+                          const position = getCirclePosition(index, dates.length, radius);
 
                           return (
                               <Circle
