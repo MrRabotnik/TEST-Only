@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap";
+import React, { useRef } from "react";
 
 interface Props {
     name: string;

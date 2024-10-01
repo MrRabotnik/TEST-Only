@@ -36,7 +36,6 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
             duration: duration,
             onUpdate: () => {
                 const newStartYear = Math.floor(currentYears.start);
-                const newEndYear = Math.floor(currentYears.end);
                 const yearsArray = Array.from({ length: yearRange }, (_, i) => newStartYear + i);
                 setCurrentYears({
                     start: yearsArray[0],
@@ -59,6 +58,7 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
             rotation: rotationAngle + 45,
             duration: 0,
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeSectionIndex, startYear, endYear]);
 
     return (
