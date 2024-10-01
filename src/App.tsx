@@ -11,14 +11,14 @@ function App() {
 
     return (
         <div className="container">
-            <BackgroundLines />
-            <DateCircle
-                dates={dates}
-                activeSectionIndex={activeSectionIndex}
-                setActiveSectionIndex={setActiveSectionIndex}
-            />
             <main>
                 <Header />
+                <BackgroundLines />
+                <DateCircle
+                    dates={dates}
+                    activeSectionIndex={activeSectionIndex}
+                    setActiveSectionIndex={setActiveSectionIndex}
+                />
                 <SliderWrapper
                     dates={dates}
                     activeSectionIndex={activeSectionIndex}

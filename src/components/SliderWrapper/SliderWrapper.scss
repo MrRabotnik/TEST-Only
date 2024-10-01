@@ -6,16 +6,20 @@
     padding-bottom: 20px;
 
     .slider-header {
-        width: 120px;
-        padding-left: 80px;
+        width: 8vw;
+        padding-left: 7vw;
+
+        p {
+            font-size: 1vw;
+        }
 
         .buttons-container {
             display: flex;
             justify-content: space-between;
 
             button {
-                width: 50px;
-                height: 50px;
+                width: 3.5vw;
+                height: 3.5vw;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -23,7 +27,7 @@
                 border: 1px solid #42567a80;
                 outline: none;
                 background-color: transparent;
-                font-size: 20px;
+                font-size: 1.2vw;
 
                 &:hover {
                     cursor: pointer;
@@ -35,7 +39,7 @@
     .slider-container {
         display: flex;
         align-items: center;
-        margin-top: 20px;
+        margin-top: 1.5vw;
 
         .swiper {
             width: 90%;
@@ -55,18 +59,49 @@
             justify-content: center;
 
             button {
-                width: 40px;
-                height: 40px;
+                width: 3vw;
+                height: 3vw;
                 color: blue;
                 box-shadow: 0 0 5px rgb(210, 210, 210);
                 border-radius: 50%;
                 background-color: white;
                 border: none;
-                font-size: 20px;
+                font-size: 1.2vw;
 
                 &:hover {
                     cursor: pointer;
                 }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .slider-wrapper {
+        flex-grow: 1;
+        flex-direction: column-reverse;
+        justify-content: space-around;
+
+        .slider-header {
+            width: 18vw;
+            padding-left: 0;
+
+            p {
+                font-size: 3vw;
+            }
+
+            .buttons-container {
+                button {
+                    width: 8vw;
+                    height: 8vw;
+                    font-size: 3vw;
+                }
+            }
+        }
+
+        .slider-container {
+            & > .button-container {
+                display: none;
             }
         }
     }

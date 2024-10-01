@@ -12,10 +12,14 @@
             margin: 0;
 
             &:last-child {
-                margin-left: 100px;
+                margin-left: 5vw;
                 color: #ef5da8;
             }
         }
+    }
+
+    h1 {
+        display: none;
     }
 
     .circle-container {
@@ -39,7 +43,7 @@
             align-items: center;
             background-color: white;
             text-align: center;
-            font-size: 12px;
+            font-size: 1vw;
             cursor: pointer;
             transform: translate(-50%, -50%);
             border: 1px solid #42567a50;
@@ -69,6 +73,31 @@
                 line-height: 30px;
                 color: #42567a;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .circle-years-wrapper {
+        .years-container {
+            position: static;
+            transform: translate(0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vw;
+
+            h2 {
+                font-size: 18vw;
+            }
+        }
+
+        h1 {
+            display: block;
+        }
+
+        .circle-container {
+            display: none;
         }
     }
 }

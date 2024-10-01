@@ -85,6 +85,8 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
                 <h2>{currentYears.end}</h2>
             </div>
 
+            <hr />
+
             <div
                 className="circle-container"
                 ref={circleRef}

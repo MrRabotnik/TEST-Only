@@ -12,3 +12,16 @@
         line-height: 2vw;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .slider-item {
+        .year {
+            font-size: 4vw;
+        }
+
+        .text {
+            font-size: 3.5vw;
+            line-height: 4vw;
+        }
+    }
+}
