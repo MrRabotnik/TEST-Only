@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import Header from "./components/Header/Header";
+import BackgroundLines from "./components/BackgroundLines/BackgroundLines";
+import SliderWrapper from "./components/SliderWrapper/SliderWrapper";
+import { data, DataItem } from "./utils/data";
+import DateCircle from "./components/DateCircle/DateCircle";
 
 function App() {
-    return <div className="App"></div>;
+    const dates: DataItem[] = data;
+    const [activeSectionIndex, setActiveSectionIndex] = useState<number>(0);
+
+    return (
+        <div className="container">
+            <BackgroundLines />
+            <DateCircle
+                dates={dates}
+                activeSectionIndex={activeSectionIndex}
+                setActiveSectionIndex={setActiveSectionIndex}
+            />
+            <main>
+                <Header />
+                <SliderWrapper data={dates[activeSectionIndex]} />
+            </main>
+        </div>
+    );
 }
 
 export default App;

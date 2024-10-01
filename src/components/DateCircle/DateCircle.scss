@@ -1,0 +1,63 @@
+.circle-years-wrapper {
+    .years-container {
+        height: 300px;
+        display: flex;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        h2 {
+            font-size: 200px;
+            color: #5d5fef;
+            margin: 0;
+
+            &:last-child {
+                margin-left: 100px;
+                color: #ef5da8;
+            }
+        }
+    }
+
+    .circle-container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        border: 1px solid #42567a50;
+
+        .circle-item {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            border: 1px solid #42567a50;
+
+            &.closed {
+                color: transparent;
+                width: 6px;
+                height: 6px;
+                background-color: black;
+
+                &:hover {
+                    width: 50px;
+                    height: 50px;
+                    background-color: white;
+                    color: initial;
+                    transition: 0.5s;
+                }
+            }
+        }
+    }
+}
