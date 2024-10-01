@@ -20,6 +20,7 @@ const Circle: React.FC<Props> = ({ name, isActive, onClick, index, style }) => {
             style={style}
         >
             {index + 1}
+            <div className={`circle-name ${isActive ? "" : "hidden"}`}>{name}</div>
         </div>
     );
 };

@@ -24,6 +24,7 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        transition: transform 0.5s ease;
         width: 500px;
         height: 500px;
         border-radius: 50%;
@@ -43,6 +44,7 @@
             cursor: pointer;
             transform: translate(-50%, -50%);
             border: 1px solid #42567a50;
+            transition: 0.5s;
 
             &.closed {
                 color: transparent;
@@ -55,8 +57,18 @@
                     height: 50px;
                     background-color: white;
                     color: initial;
-                    transition: 0.5s;
                 }
+            }
+
+            .circle-name {
+                position: absolute;
+                left: 150%;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 30px;
+                color: #42567a;
             }
         }
     }

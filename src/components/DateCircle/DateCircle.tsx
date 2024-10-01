@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./DateCircle.scss";
 import Circle from "./Circle";
 import { DataItem } from "../../utils/data";
+import { gsap } from "gsap";
 
 const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) => {
     const data = dates?.[activeSectionIndex];
@@ -9,10 +10,15 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
     const endYear = data?.events?.[data?.events?.length - 1]?.year;
     const radius = 250;
 
+    const [currentYears, setCurrentYears] = useState<{ start: number; end: number }>({
+        start: startYear,
+        end: endYear,
+    });
+
     const getCirclePosition = (index: number, total: number) => {
-        const angle = (2 * Math.PI * index) / total; // Calculate angle for each item
-        const x = radius + radius * Math.cos(angle); // X position
-        const y = radius + radius * Math.sin(angle); // Y position
+        const angle = (2 * Math.PI * index) / total;
+        const x = radius + radius * Math.cos(angle);
+        const y = radius + radius * Math.sin(angle);
         return { left: `${x}px`, top: `${y}px` };
     };
 
@@ -20,11 +26,46 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
         setActiveSectionIndex(ind);
     };
 
+    useEffect(() => {
+        const duration = 0.5;
+        const yearRange = endYear - startYear + 1;
+
+        gsap.to(currentYears, {
+            start: startYear,
+            end: endYear,
+            duration: duration,
+            onUpdate: () => {
+                const newStartYear = Math.floor(currentYears.start);
+                const newEndYear = Math.floor(currentYears.end);
+                const yearsArray = Array.from({ length: yearRange }, (_, i) => newStartYear + i);
+                setCurrentYears({
+                    start: yearsArray[0],
+                    end: yearsArray[yearsArray.length - 1],
+                });
+            },
+            onComplete: () => {
+                setCurrentYears({ start: startYear, end: endYear });
+            },
+        });
+
+        const rotationAngle = (activeSectionIndex * (360 / dates.length)) % 360;
+
+        gsap.to(".circle-container", {
+            rotation: -rotationAngle - 45,
+            duration: 0.3,
+        });
+
+        gsap.to(".circle-item", {
+            rotation: rotationAngle + 45,
+            duration: 0,
+        });
+    }, [activeSectionIndex, startYear, endYear]);
+
     return (
         <div className="circle-years-wrapper">
             <div className="years-container">
-                <h2>{startYear}</h2>
-                <h2>{endYear}</h2>
+                <h2>{currentYears.start}</h2>
+                <h2>{currentYears.end}</h2>
             </div>
 
             <div className="circle-container">

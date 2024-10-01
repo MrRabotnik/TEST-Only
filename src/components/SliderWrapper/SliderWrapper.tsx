@@ -14,6 +14,12 @@ const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any
     const [isPrevDisabled, setIsPrevDisabled] = useState(true);
     const [isNextDisabled, setIsNextDisabled] = useState(false);
 
+    const data = dates[activeSectionIndex];
+
+    useEffect(() => {
+        updateButtonStates();
+    }, [dates]);
+
     const updateButtonStates = () => {
         if (swiperRef.current) {
             const swiper = swiperRef.current.swiper;
@@ -35,12 +41,6 @@ const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any
             updateButtonStates();
         }
     };
-
-    useEffect(() => {
-        updateButtonStates();
-    }, [dates]);
-
-    const data = dates[activeSectionIndex];
 
     return (
         <div className="slider-wrapper">
@@ -78,7 +78,7 @@ const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any
                 <Swiper
                     ref={swiperRef}
                     modules={[Navigation, Pagination]}
-                    spaceBetween={30}
+                    spaceBetween={100}
                     slidesPerView={3}
                     navigation={false}
                     pagination={false}
