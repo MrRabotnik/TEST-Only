@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./SliderWrapper.scss";
 import SliderItem from "../SliderItem/SliderItem";
-import { EventItem } from "../../utils/data";
+import { DataItem, EventItem } from "../../utils/data";
 
 const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) => {
     const swiperRef = useRef<any>(null);
@@ -61,28 +61,44 @@ const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any
 
     return (
         <div className="slider-wrapper">
-            <div className="slider-header">
-                <p>
-                    {activeSectionIndex + 1 >= 10 ? activeSectionIndex + 1 : "0" + (activeSectionIndex + 1)}/
-                    {dates.length >= 10 ? dates.length : "0" + dates.length}
-                </p>
-                <div className="buttons-container">
-                    <button
-                        className="previous"
-                        onClick={() => setActiveSectionIndex((prev: number) => prev - 1)}
-                        disabled={activeSectionIndex <= 0}
-                    >
-                        &#60;
-                    </button>
-                    <button
-                        className="next"
-                        onClick={() => setActiveSectionIndex((prev: number) => prev + 1)}
-                        disabled={activeSectionIndex >= dates.length - 1}
-                    >
-                        &#62;
-                    </button>
+            <div className="slider-header-wrapper">
+                <div className="slider-header">
+                    <p>
+                        {activeSectionIndex + 1 >= 10 ? activeSectionIndex + 1 : "0" + (activeSectionIndex + 1)}/
+                        {dates.length >= 10 ? dates.length : "0" + dates.length}
+                    </p>
+                    <div className="buttons-container">
+                        <button
+                            className="previous"
+                            onClick={() => setActiveSectionIndex((prev: number) => prev - 1)}
+                            disabled={activeSectionIndex <= 0}
+                        >
+                            &#60;
+                        </button>
+                        <button
+                            className="next"
+                            onClick={() => setActiveSectionIndex((prev: number) => prev + 1)}
+                            disabled={activeSectionIndex >= dates.length - 1}
+                        >
+                            &#62;
+                        </button>
+                    </div>
+                </div>
+                <div className="pagination">
+                    {dates && dates.length
+                        ? dates.map((_: DataItem, index: number) => {
+                              return (
+                                  <div
+                                      key={index}
+                                      onClick={() => setActiveSectionIndex(index)}
+                                      className={activeSectionIndex === index ? "active" : ""}
+                                  ></div>
+                              );
+                          })
+                        : ""}
                 </div>
             </div>
+
             <div className="slider-container">
                 <div className="button-container">
                     <button

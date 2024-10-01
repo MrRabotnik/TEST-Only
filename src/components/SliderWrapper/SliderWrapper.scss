@@ -5,34 +5,42 @@
     justify-content: end;
     padding-bottom: 20px;
 
-    .slider-header {
-        width: 8vw;
-        padding-left: 7vw;
+    .slider-header-wrapper {
+        display: flex;
 
-        p {
-            font-size: 1vw;
-        }
+        .slider-header {
+            width: 8vw;
+            padding-left: 7vw;
 
-        .buttons-container {
-            display: flex;
-            justify-content: space-between;
+            p {
+                font-size: 1vw;
+            }
 
-            button {
-                width: 3.5vw;
-                height: 3.5vw;
+            .buttons-container {
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-                border: 1px solid #42567a80;
-                outline: none;
-                background-color: transparent;
-                font-size: 1.2vw;
+                justify-content: space-between;
 
-                &:hover {
-                    cursor: pointer;
+                button {
+                    width: 3.5vw;
+                    height: 3.5vw;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    border: 1px solid #42567a80;
+                    outline: none;
+                    background-color: transparent;
+                    font-size: 1.2vw;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
+        }
+
+        .pagination {
+            display: none;
         }
     }
 
@@ -82,19 +90,41 @@
         flex-direction: column-reverse;
         justify-content: space-around;
 
-        .slider-header {
-            width: 18vw;
-            padding-left: 0;
+        .slider-header-wrapper {
+            align-items: center;
 
-            p {
-                font-size: 3vw;
+            .slider-header {
+                width: 18vw;
+                padding-left: 0;
+
+                p {
+                    font-size: 3vw;
+                }
+
+                .buttons-container {
+                    button {
+                        width: 8vw;
+                        height: 8vw;
+                        font-size: 3vw;
+                    }
+                }
             }
 
-            .buttons-container {
-                button {
-                    width: 8vw;
-                    height: 8vw;
-                    font-size: 3vw;
+            .pagination {
+                margin: 0 auto;
+                display: flex;
+                gap: 5px;
+                height: 10px;
+
+                & > div {
+                    width: 10px;
+                    height: 10px;
+                    background-color: #42567a40;
+                    border-radius: 50%;
+
+                    &.active {
+                        background-color: #42567a;
+                    }
                 }
             }
         }
