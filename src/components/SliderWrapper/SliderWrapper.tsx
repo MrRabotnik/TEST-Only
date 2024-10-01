@@ -13,12 +13,29 @@ const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any
     const swiperRef = useRef<any>(null);
     const [isPrevDisabled, setIsPrevDisabled] = useState(true);
     const [isNextDisabled, setIsNextDisabled] = useState(false);
+    const [update, setUpdate] = useState(false);
 
     const data = dates[activeSectionIndex];
 
     useEffect(() => {
         updateButtonStates();
     }, [dates]);
+
+    useEffect(() => {
+        const updateSize = () => {
+            setUpdate((prev) => !prev);
+            console.log(update);
+        };
+
+        updateSize();
+
+        window.addEventListener("resize", updateSize);
+
+        return () => {
+            window.removeEventListener("resize", updateSize);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const updateButtonStates = () => {
         if (swiperRef.current) {
@@ -78,8 +95,8 @@ const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any
                 <Swiper
                     ref={swiperRef}
                     modules={[Navigation, Pagination]}
-                    spaceBetween={100}
-                    slidesPerView={1.5}
+                    spaceBetween={window.innerWidth <= 480 ? 50 : 100}
+                    slidesPerView={window.innerWidth <= 480 ? 1.5 : 3}
                     navigation={false}
                     pagination={false}
                     onSlideChange={updateButtonStates}
