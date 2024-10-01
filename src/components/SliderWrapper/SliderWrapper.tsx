@@ -9,7 +9,7 @@ import "./SliderWrapper.scss";
 import SliderItem from "../SliderItem/SliderItem";
 import { EventItem } from "../../utils/data";
 
-const SliderWrapper = ({ data }: any) => {
+const SliderWrapper = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) => {
     const swiperRef = useRef<any>(null);
     const [isPrevDisabled, setIsPrevDisabled] = useState(true);
     const [isNextDisabled, setIsNextDisabled] = useState(false);
@@ -38,24 +38,29 @@ const SliderWrapper = ({ data }: any) => {
 
     useEffect(() => {
         updateButtonStates();
-    }, [data]);
+    }, [dates]);
+
+    const data = dates[activeSectionIndex];
 
     return (
         <div className="slider-wrapper">
             <div className="slider-header">
-                <p>06/06</p>
+                <p>
+                    {activeSectionIndex + 1 >= 10 ? activeSectionIndex + 1 : "0" + (activeSectionIndex + 1)}/
+                    {dates.length >= 10 ? dates.length : "0" + dates.length}
+                </p>
                 <div className="buttons-container">
                     <button
                         className="previous"
-                        onClick={handlePrev}
-                        disabled={isPrevDisabled}
+                        onClick={() => setActiveSectionIndex((prev: number) => prev - 1)}
+                        disabled={activeSectionIndex <= 0}
                     >
                         &#60;
                     </button>
                     <button
                         className="next"
-                        onClick={handleNext}
-                        disabled={isNextDisabled}
+                        onClick={() => setActiveSectionIndex((prev: number) => prev + 1)}
+                        disabled={activeSectionIndex >= dates.length - 1}
                     >
                         &#62;
                     </button>

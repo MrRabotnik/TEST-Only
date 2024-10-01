@@ -19,7 +19,11 @@ function App() {
             />
             <main>
                 <Header />
-                <SliderWrapper data={dates[activeSectionIndex]} />
+                <SliderWrapper
+                    dates={dates}
+                    activeSectionIndex={activeSectionIndex}
+                    setActiveSectionIndex={setActiveSectionIndex}
+                />
             </main>
         </div>
     );
