@@ -62,8 +62,11 @@ const DateCircle = ({ dates, activeSectionIndex, setActiveSectionIndex }: any) =
 
         gsap.to(".circle-item", {
             rotation: rotationAngle + 45,
+            x: "-50%",
+            y: "-50%",
             duration: 0,
         });
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeSectionIndex, startYear, endYear]);
 

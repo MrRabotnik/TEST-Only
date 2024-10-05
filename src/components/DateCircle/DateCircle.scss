@@ -50,7 +50,6 @@
             text-align: center;
             font-size: 1vw;
             cursor: pointer;
-            transform: translate(-50%, -50%);
             border: 1px solid #42567a50;
 
             &.closed {
@@ -64,7 +63,7 @@
                     height: 3.5vw;
                     background-color: white;
                     color: initial;
-                    transition: 0.5s;
+                    transition: 0.3s;
                 }
             }
 
