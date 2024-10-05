@@ -31,7 +31,7 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        transition: transform 0.5s ease;
+        transition: 0.3s;
         width: 25vw;
         height: 25vw;
         border-radius: 50%;
@@ -51,7 +51,6 @@
             cursor: pointer;
             transform: translate(-50%, -50%);
             border: 1px solid #42567a50;
-            transition: 0.5s;
 
             &.closed {
                 color: transparent;
@@ -64,6 +63,7 @@
                     height: 3.5vw;
                     background-color: white;
                     color: initial;
+                    transition: 0.5s;
                 }
             }
 
